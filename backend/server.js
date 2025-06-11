@@ -4,14 +4,15 @@ const app = express();
 const cors = require('cors');
 const mysql = require('mysql');
 
+require('dotenv').config();
 app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'Sivaganesh042@',
-  database: 'tododb'
+  host: process.env.DB_HOST,         // ✅ from Render env
+  user: process.env.DB_USER,         // ✅ from Render env
+  password: process.env.DB_PASSWORD, // ✅ from Render env
+  database: process.env.DB_NAME      // ✅ from Render env
 });
 
 db.connect(err => {
